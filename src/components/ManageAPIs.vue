@@ -14,9 +14,11 @@ export default {
     HeaderSearchbox,
     ToggleButton,
   },
+
   data() {
     return {
-      script: {},
+      api: {},
+      key_visibility: false,
       color: localStorage.color,
       toggleScriptPrivacy: toggleScriptPrivacy,
       toggleScriptObfuscate: toggleScriptObfuscate,
@@ -26,14 +28,27 @@ export default {
     let id = Query.get("id");
     if (id) {
       const response = await fetch(
-        `${window.$BackendURL}/api/v1/script/get/${id}`
+        `${window.$BackendURL}/api/v1/api/data/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token: localStorage.token,
+          }),
+        }
       );
-      const { Data: script } = await response.json();
-      this.script = script || {};
-      if (!script.content) {
-        script.content = script.obfuscated_content;
-      }
+      const { Data: api } = await response.json();
+      this.api = api || {};
     }
+  },
+  methods: {
+    toggleVisibility() {
+      this.key_visibility == true
+        ? (this.key_visibility = false)
+        : (this.key_visibility = true);
+    },
   },
 };
 </script>
@@ -129,6 +144,30 @@ export default {
             <HeaderSearchbox />
           </div>
         </div>
+      </div>
+      <div class="px-4 py-4">
+        <div class="grid-cols-2 grid">
+          <h1 class="text-gray-200 font-bold text-3xl">
+            <span>{{ api.name }} </span>
+          </h1>
+          <div>
+            <button
+              @click="toggleVisibility()"
+              :class="`bg-${color} float-right text-white rounded-md px-9 py-3`"
+            >
+              Show Key
+            </button>
+          </div>
+        </div>
+        <input
+          :type="key_visibility == false ? 'password' : 'test'"
+          disabled
+          :value="api.key"
+          :class="`scrollbar-thin scrollbar-thumb-${color}
+        scrollbar-track-bray-400 overflow-y-scroll rounded text-gray-300 text-sm
+        bg-bray-500 border border-bray-300 resize-none w-full mt-5
+        focus:outline-none px-3 py-3 cursor-text`"
+        />
       </div>
       <!-- Content -->
     </div>

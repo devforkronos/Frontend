@@ -2,6 +2,7 @@
 import Welcome from "./components/HomeHero.vue";
 import Home from "./components/DashboardComponent.vue";
 import Auth from "./components/AuthComponent.vue";
+import Webhook from "./components/WebhookDashboard.vue";
 import APIs from "./components/APIsDashboardComponent.vue";
 import Scripts from "./components/ScriptsComponent.vue";
 import Tools from "./components/ToolsDashboardComponent.vue";
@@ -11,6 +12,8 @@ import ManageScript from "./components/ManageScriptComponent.vue";
 import Docs from "./components/DocsComponent.vue";
 import NotFound from "./components/ErrorComponent404.vue";
 import NewScript from "./components/NewScriptComponent.vue";
+import NewWebhook from "./components/NewWebhook.vue";
+import NewAPI from "./components/NewAPI.vue";
 import Obfuscator from "./components/ObfuscatorComponent.vue";
 
 const routes = {
@@ -38,6 +41,12 @@ const routes = {
   "/scripts/new": {
     component: NewScript,
   },
+  "/webhooks/new": {
+    component: NewWebhook,
+  },
+  "/apis/new": {
+    component: NewAPI,
+  },
   "/manage-script": {
     component: ManageScript,
   },
@@ -52,6 +61,9 @@ const routes = {
   },
   "/manage-api": {
     component: ManageAPI,
+  },
+  "/tools/webhook": {
+    component: Webhook,
   },
 };
 

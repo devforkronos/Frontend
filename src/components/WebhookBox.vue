@@ -1,25 +1,21 @@
 <script>
 export default {
-  name: "APIsBox",
+  name: "webhooksBox",
   data() {
     return {
-      apis: [],
+      webhooks: [],
       color: localStorage.color,
     };
   },
   async created() {
-    const response = await fetch(`${window.$BackendURL}/api/v1/apis/me`, {
+    const response = await fetch(`${window.$BackendURL}/api/v1/webhooks/me`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ token: localStorage.token }),
     });
     var Data = await response.json();
-    console.log(Data);
-    this.MaxAPIs = Data.max;
-    this.apis = Data.Data;
-    if (!apis) {
-      this.apis = [];
-    }
+    this.Maxwebhooks = Data.max;
+    this.webhooks = Data.Data;
   },
 };
 </script>
@@ -33,7 +29,7 @@ export default {
           <div class="w-full mt-3 grid-cols-2 grid">
             <div>
               <h2 class="text-2xl font-bold">
-                My APIs({{ apis.length }}/{{ MaxAPIs }})
+                My Webhooks({{ webhooks.length }}/{{ Maxwebhooks }})
               </h2>
               <p :class="`text-sm text-gray-400`">
                 Manage your BloxSasfe data programatically.
@@ -41,8 +37,8 @@ export default {
             </div>
             <div>
               <a
-                href="/apis/new"
-                :disabled="apis.max >= apis.length"
+                href="/webhooks/new"
+                :disabled="webhooks.max >= webhooks.length"
                 :class="`bg-${color} float-right text-white rounded-md px-9 py-3`"
               >
                 Create Key
@@ -52,18 +48,18 @@ export default {
         </div>
         <div class="mt-3">
           <label
-            v-if="(apis.length || 0) <= 0"
+            v-if="(webhooks.length || 0) <= 0"
             class="rounded-md relative border border-bray-300 p-4 flex cursor-pointer focus:outline-none"
           >
             <div class="ml-3 flex flex-col">
               <span class="block text-sm text-gray-300">
-                You currently have no API keys. Click the button on Top-right to
+                You currently have no Webhooks. Click the button on Top-right to
                 create one.
               </span>
             </div>
           </label>
           <div class="space-y-3">
-            <div v-for="item in apis" class="w-full" :key="item">
+            <div v-for="item in webhooks" class="w-full" :key="item">
               <a
                 :href="`/manage-api?id=${item.id}`"
                 target="_blank"
