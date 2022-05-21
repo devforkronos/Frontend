@@ -2,3 +2,12 @@
 body {
   font-family: "Quicksand", sans-serif;
 }
+.tippy-box[data-theme~="bray"] {
+  background-color: #191926 !important;
+  color: #ffffff;
+}
+
+.tippy-tooltip.tomato-theme {
+  background-color: tomato;
+  color: yellow;
+}

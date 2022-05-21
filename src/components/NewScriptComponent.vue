@@ -14,6 +14,30 @@ export default {
   },
   data() {
     return {
+      createScript() {
+        fetch(`${window.$BackendURL}/api/v1/script/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token: localStorage.token,
+            data: {
+              name: localStorage.new_script_name,
+              content: localStorage.new_script_code,
+              description: localStorage.new_script_description,
+              private: localStorage.new_script_private,
+              obfuscate: localStorage.new_script_obfuscation,
+            },
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.Success == true) {
+              window.location.href = `/manage-script?id=${res.Data.id}`;
+            }
+          });
+      },
       toggleNewScriptObfuscation() {
         if (
           localStorage.new_script_obfuscation == true ||
@@ -141,6 +165,7 @@ export default {
             <span>{{ script["name"] || "" }}</span>
           </h1>
           <button
+            @click="createScript()"
             :class="`bg-${color} float-right text-white rounded-md px-9 py-3`"
           >
             Publish

@@ -1,11 +1,11 @@
 <script>
-import toggleMinification from "@/assets/toggleMinification.js";
 let Query = new URLSearchParams(window.location.search);
+import toggleScriptObfuscate from "@/assets/toggleScriptObfuscate.js";
+import toggleScriptPrivacy from "@/assets/toggleScriptPrivacy.js";
 import SidebarNavs from "./SidebarNavs.vue";
 import ColorThemeBox from "./ColorThemeBox.vue";
 import HeaderSearchbox from "./HeaderSearchbox.vue";
 import ToggleButton from "./ToggleButton.vue";
-
 export default {
   name: "DashboardComponent",
   components: {
@@ -14,37 +14,12 @@ export default {
     HeaderSearchbox,
     ToggleButton,
   },
-
   data() {
     return {
-      obfuscate() {
-        console.log(`Obfuscating Script, Please Wait...`);
-        fetch(`${window.$BackendURL}/api/v1/tools/obfuscator`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            code: localStorage.obfuscate_code_box_value,
-            minify: localStorage.minify_on_obfuscate == true ? true : false,
-          }),
-        })
-          .then((res) => res.json())
-          .then((res) => {
-            const a = document.createElement("a");
-            const blob = new Blob([res.Data.Code], { type: "text/plain" });
-            const url = URL.createObjectURL(blob);
-            a.setAttribute("href", url);
-            a.setAttribute("download", "BloxSafe.lua");
-            a.click();
-            a.remove();
-          });
-      },
       script: {},
       color: localStorage.color,
-      localStorage: localStorage,
-      toggleMinification: toggleMinification,
-      minify_on_obfuscate: localStorage.minify_on_obfuscate,
+      toggleScriptPrivacy: toggleScriptPrivacy,
+      toggleScriptObfuscate: toggleScriptObfuscate,
     };
   },
   async created() {
@@ -58,9 +33,6 @@ export default {
       if (!script.content) {
         script.content = script.obfuscated_content;
       }
-    }
-    if (!localStorage.minify_on_obfuscate) {
-      localStorage.setItem("minify_on_obfuscate", true);
     }
   },
 };
@@ -156,36 +128,6 @@ export default {
           <div class="flex-1 flex">
             <HeaderSearchbox />
           </div>
-        </div>
-      </div>
-      <div class="px-4 py-4">
-        <div class="space-y-3 mt-5">
-          <div class="grid text-gray-300 items-center flex w-full grid-cols-2">
-            <div>Minification</div>
-            <div class="w-full float-right">
-              <ToggleButton
-                :onClick="toggleMinification"
-                :toggleMinification="true"
-                :toggled="minify_on_obfuscate"
-              />
-            </div>
-          </div>
-        </div>
-        <textarea
-          v-model="localStorage.obfuscate_code_box_value"
-          placeholder="Paste Lua Code In This Box"
-          :class="`scrollbar-thin scrollbar-thumb-${color} scrollbar-track-bray-400 overflow-y-scroll rounded text-gray-300 h-screen text-sm bg-bray-500 border border-bray-300 resize-none w-full mt-5 focus:outline-none px-3 py-3`"
-        ></textarea>
-        <div class="grid-cols-1 grid mt-1">
-          <h1 class="text-gray-200 font-bold text-3xl">
-            <span>{{ script["name"] || "" }}</span>
-          </h1>
-          <button
-            @click="obfuscate()"
-            :class="`bg-${color} float-right text-white rounded-md px-9 py-3`"
-          >
-            Obfuscate
-          </button>
         </div>
       </div>
       <!-- Content -->

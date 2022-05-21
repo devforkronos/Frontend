@@ -56,21 +56,23 @@ export default {
               </span>
             </div>
           </label>
-          <div v-for="item in apis" class="w-full" :key="item">
-            <a
-              :href="`/manage-api?id=${item.id}`"
-              target="_blank"
-              class="rounded-md relative border w-full border-bray-300 p-4 flex cursor-pointer focus:outline-none"
-            >
-              <div class="ml-3 flex flex-col">
-                <span :class="`block text-sm font-medium text-${color}`">
-                  {{ item.name }}
-                </span>
-                <span class="block text-sm">
-                  {{ item.description }}
-                </span>
-              </div>
-            </a>
+          <div class="space-y-3">
+            <div v-for="item in apis" class="w-full" :key="item">
+              <a
+                :href="`/manage-api?id=${item.id}`"
+                target="_blank"
+                class="rounded-md relative border w-full border-bray-300 p-4 flex cursor-pointer focus:outline-none"
+              >
+                <div class="ml-3 flex flex-col">
+                  <span :class="`block text-sm font-medium text-${color}`">
+                    {{ item.name }}
+                  </span>
+                  <span class="block text-sm">
+                    {{ item.description }}
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>

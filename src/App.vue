@@ -6,7 +6,8 @@ import APIs from "./components/APIsDashboardComponent.vue";
 import Scripts from "./components/ScriptsComponent.vue";
 import Tools from "./components/ToolsDashboardComponent.vue";
 import SHub from "./components/ScriptHubComponent.vue";
-import Manage from "./components/ManageScriptComponent.vue";
+import ManageAPI from "./components/ManageAPIs.vue";
+import ManageScript from "./components/ManageScriptComponent.vue";
 import Docs from "./components/DocsComponent.vue";
 import NotFound from "./components/ErrorComponent404.vue";
 import NewScript from "./components/NewScriptComponent.vue";
@@ -38,7 +39,7 @@ const routes = {
     component: NewScript,
   },
   "/manage-script": {
-    component: Manage,
+    component: ManageScript,
   },
   "/tools/hub": {
     component: SHub,
@@ -48,6 +49,9 @@ const routes = {
   },
   "/404": {
     component: NotFound,
+  },
+  "/manage-api": {
+    component: ManageAPI,
   },
 };
 

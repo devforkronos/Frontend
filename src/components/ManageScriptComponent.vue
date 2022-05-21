@@ -1,7 +1,5 @@
 <script>
 let Query = new URLSearchParams(window.location.search);
-import toggleScriptObfuscate from "@/assets/toggleScriptObfuscate.js";
-import toggleScriptPrivacy from "@/assets/toggleScriptPrivacy.js";
 import SidebarNavs from "./SidebarNavs.vue";
 import ColorThemeBox from "./ColorThemeBox.vue";
 import HeaderSearchbox from "./HeaderSearchbox.vue";
@@ -16,11 +14,47 @@ export default {
   },
   data() {
     return {
+      updateScript() {
+        console.log(`Updateing Script`);
+        fetch(`${window.$BackendURL}/api/v1/script/update`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: Query.get("id"),
+            token: localStorage.token,
+            data: {
+              content: this.script.content,
+              private: this.script.private == "1" ? true : false,
+              obfuscate: this.script.obfuscate == "1" ? true : false,
+            },
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.Success == true) {
+              console.log(`Successfuly updated script`);
+              window.location.reload();
+            }
+          });
+      },
       script: {},
+      window: window,
       color: localStorage.color,
-      toggleScriptPrivacy: toggleScriptPrivacy,
-      toggleScriptObfuscate: toggleScriptObfuscate,
     };
+  },
+  methods: {
+    toggleScriptPrivacy() {
+      this.script.private == "1"
+        ? (this.script.private = false)
+        : (this.script.private = true);
+    },
+    toggleScriptObfuscate() {
+      this.script.obfuscate == "1"
+        ? (this.script.obfuscate = false)
+        : (this.script.obfuscate = true);
+    },
   },
   async created() {
     let id = Query.get("id");
@@ -137,6 +171,7 @@ export default {
           </h1>
           <div>
             <button
+              @click="updateScript()"
               :class="`bg-${color} float-right text-white rounded-md px-9 py-3`"
             >
               Save
@@ -154,7 +189,12 @@ export default {
             </div>
           </div>
           <div class="grid text-gray-300 items-center flex w-full grid-cols-2">
-            <div>Private(Key system)</div>
+            <div>
+              <span
+                tip="On Private mode, original code is hidden and scripts don't show in script hub."
+                >Private</span
+              >
+            </div>
             <div class="w-full float-right">
               <ToggleButton
                 :toggled="script.private == '1' ? true : false"
@@ -163,10 +203,20 @@ export default {
             </div>
           </div>
         </div>
-
+        <input
+          type="text"
+          disabled
+          :value="`${window.$BackendURL}/api/v1/script/get/${
+            script.id || ''
+          }?type=txt`"
+          :class="`scrollbar-thin scrollbar-thumb-${color}
+        scrollbar-track-bray-400 overflow-y-scroll rounded text-gray-300 text-sm
+        bg-bray-500 border border-bray-300 resize-none w-full mt-5
+        focus:outline-none px-3 py-3 cursor-text`"
+        />
         <textarea
           v-model="script.content"
-          :class="`scrollbar-thin scrollbar-thumb-${color} scrollbar-track-bray-400 overflow-y-scroll rounded text-gray-400 h-screen text-sm bg-bray-500 border border-bray-300 resize-none w-full mt-5 focus:outline-none px-3 py-3`"
+          :class="`scrollbar-thin scrollbar-thumb-${color} scrollbar-track-bray-400 overflow-y-scroll rounded text-gray-300 h-screen text-sm bg-bray-500 border border-bray-300 resize-none w-full mt-3 focus:outline-none px-3 py-3`"
         >
         </textarea>
       </div>

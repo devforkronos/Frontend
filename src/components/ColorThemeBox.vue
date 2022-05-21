@@ -12,8 +12,8 @@ export default {
   <div class="grid-cols-1 grid">
     <h1 class="text-gray-300 text-sm px-4">
       <span>v1.0.0 - </span>
-      <a href="https://github.com/jareer12/" :class="`text-${color}`"
-        >github.com/jareer12</a
+      <a href="https://github.com/BloxSafe/" :class="`text-${color}`"
+        >github.com/BloxSafe</a
       >
     </h1>
     <div
