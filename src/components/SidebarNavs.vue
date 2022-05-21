@@ -3,15 +3,17 @@ export default {
   name: "SidebarNavs",
   data() {
     return {
-      logout() {
-        console.log(`Loging User Out`);
-        localStorage.removeItem("token");
-        window.location.reload();
-      },
       localStorage: localStorage,
       window: window,
       color: localStorage.color,
     };
+  },
+  methods: {
+    logoutUser() {
+      console.log(`Loging User Out`);
+      localStorage.removeItem("token");
+      window.location.reload();
+    },
   },
 };
 </script>
@@ -124,7 +126,7 @@ export default {
         Docs
       </a>
       <button
-        @onclick="logout()"
+        @click="logoutUser()"
         class="text-gray-300 hover:text-white group flex items-center px-2 py-2 text-sm font-medium"
       >
         <svg
@@ -146,7 +148,7 @@ export default {
     </div>
     <div class="space-y-2" v-if="!localStorage.token">
       <a
-        href="/login"
+        href="/auth"
         class="text-gray-300 hover:text-white group flex items-center px-2 py-2 text-sm font-medium"
       >
         <svg

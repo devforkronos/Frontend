@@ -36,7 +36,7 @@ export default {
     aria-checked="false"
   >
     <span
-      v-if="toggled == false || toggled == 'false'"
+      v-if="toggled == true || toggled == 'false'"
       :class="`translate-x-5 pointer-events-none relative inline-block h-5 w-5 rounded-full bg-${color} shadow transform ring-0 transition ease-in-out duration-200`"
     >
       <span
@@ -69,7 +69,7 @@ export default {
       </span>
     </span>
     <span
-      v-if="toggled == true || toggled == 'true'"
+      v-if="toggled == false || toggled == 'true'"
       :class="`translate-x-0 pointer-events-none relative inline-block h-5 w-5 rounded-full bg-${color} shadow transform ring-0 transition ease-in-out duration-200`"
     >
       <span

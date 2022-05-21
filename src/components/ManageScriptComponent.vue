@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       updateScript() {
-        console.log(`Updateing Script`);
+        console.log(`Updating Script`);
         fetch(`${window.$BackendURL}/api/v1/script/update`, {
           method: "POST",
           headers: {
@@ -26,8 +26,8 @@ export default {
             token: localStorage.token,
             data: {
               content: this.script.content,
-              private: this.script.private == "1" ? true : false,
-              obfuscate: this.script.obfuscate == "1" ? true : false,
+              private: this.script.private == 1 ? true : false,
+              obfuscate: this.script.obfuscate == 1 ? true : false,
             },
           }),
         })
@@ -60,13 +60,19 @@ export default {
     let id = Query.get("id");
     if (id) {
       const response = await fetch(
-        `${window.$BackendURL}/api/v1/script/get/${id}`
+        `${window.$BackendURL}/api/v1/script/data/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token: localStorage.token,
+          }),
+        }
       );
       const { Data: script } = await response.json();
       this.script = script || {};
-      if (!script.content) {
-        script.content = script.obfuscated_content;
-      }
     }
   },
 };
@@ -183,21 +189,19 @@ export default {
             <div>Obfuscation</div>
             <div class="w-full float-right">
               <ToggleButton
-                :toggled="script.obfuscate == '1' ? true : false"
+                :toggled="script.obfuscate == 1 ? true : false"
                 :onClick="toggleScriptObfuscate"
               />
             </div>
           </div>
           <div class="grid text-gray-300 items-center flex w-full grid-cols-2">
             <div>
-              <span
-                tip="On Private mode, original code is hidden and scripts don't show in script hub."
-                >Private</span
-              >
+              <span>Private</span>
             </div>
             <div class="w-full float-right">
               <ToggleButton
-                :toggled="script.private == '1' ? true : false"
+                tip="On Private mode, original code is hidden and scripts don't show in script hub."
+                :toggled="script.private == 1 ? true : false"
                 :onClick="toggleScriptPrivacy"
               />
             </div>
@@ -206,9 +210,9 @@ export default {
         <input
           type="text"
           disabled
-          :value="`${window.$BackendURL}/api/v1/script/get/${
-            script.id || ''
-          }?type=txt`"
+          :value="`loadstring(game:HttpGet('${`${
+            window.$BackendURL
+          }/api/v1/script/get/${script.id || ''}?type=txt`}'))()`"
           :class="`scrollbar-thin scrollbar-thumb-${color}
         scrollbar-track-bray-400 overflow-y-scroll rounded text-gray-300 text-sm
         bg-bray-500 border border-bray-300 resize-none w-full mt-5
