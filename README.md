@@ -8,6 +8,7 @@ Made with Vue.js and Tailwind Css
 - [Nginx Config](./nginx.conf)
 - [Netlify Installation](./NETLIFY_INSTALLATION.MD)
 - [DigitalOcean Installation](./VPS_INSTALLATION.MD)
+- [Backend Installation](https://github.com/BloxSafe/Backend)
 
 ## Preview
 

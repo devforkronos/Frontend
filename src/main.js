@@ -11,7 +11,7 @@ if (
   localStorage.color = "brew";
 }
 
-window.$productionURL = "https://panel.jubot.site";
+window.$productionURL = "https://bloxsafe.jubot.site";
 window.$developmentURL = "http://localhost:5000";
 
 // var scripts = ["/src/assets/taildown.js", "/src/assets/index.js"];
