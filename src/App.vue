@@ -2,6 +2,7 @@
 import Welcome from "./components/HomeHero.vue";
 import Home from "./components/DashboardComponent.vue";
 import Auth from "./components/AuthComponent.vue";
+import Register from "./components/Register.vue";
 import Webhook from "./components/WebhookDashboard.vue";
 import APIs from "./components/APIsDashboardComponent.vue";
 import Scripts from "./components/ScriptsComponent.vue";
@@ -26,6 +27,9 @@ const routes = {
   },
   "/auth": {
     component: Auth,
+  },
+  "/register": {
+    component: Register,
   },
   "/apis": {
     component: APIs,

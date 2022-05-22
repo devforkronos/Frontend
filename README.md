@@ -6,6 +6,7 @@ Made with Vue.js and Tailwind Css
 
 - [Preview](/#Preview)
 - [Nginx Config](./nginx.conf)
+- [DigitalOcean Installation](./VPS_INSTALLATION.MD)
 
 ## Preview
 
