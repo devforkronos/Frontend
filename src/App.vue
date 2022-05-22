@@ -9,6 +9,7 @@ import Tools from "./components/ToolsDashboardComponent.vue";
 import SHub from "./components/ScriptHubComponent.vue";
 import ManageAPI from "./components/ManageAPIs.vue";
 import ManageScript from "./components/ManageScriptComponent.vue";
+import ManageWebhook from "./components/ManageWebhook.vue";
 import Docs from "./components/DocsComponent.vue";
 import NotFound from "./components/ErrorComponent404.vue";
 import NewScript from "./components/NewScriptComponent.vue";
@@ -49,6 +50,9 @@ const routes = {
   },
   "/manage-script": {
     component: ManageScript,
+  },
+  "/manage-webhook": {
+    component: ManageWebhook,
   },
   "/tools/hub": {
     component: SHub,

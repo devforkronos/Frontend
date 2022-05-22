@@ -38,7 +38,7 @@ export default {
         <div class="absolute inset-0 h-1/2"></div>
         <div class="relative max-w-7xl mx-auto px-4">
           <div class="w-full border-bray-300 border mt-1 mx-auto">
-            <dl class="rounded-lg shadow-lg sm:grid lg:grid-cols-2">
+            <dl class="rounded-lg shadow-lg sm:grid lg:grid-cols-3">
               <div
                 class="flex flex-col border-2 border-bray-300 p-6 text-center sm:border-0 sm:border-r"
               >
@@ -59,6 +59,16 @@ export default {
                 </dt>
                 <dd :class="`order-1 text-5xl font-extrabold text-${color}`">
                   {{ stats.Scripts }}
+                </dd>
+              </div>
+              <div class="flex flex-col p-6 text-center">
+                <dt
+                  class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500"
+                >
+                  MySQL Storage Used
+                </dt>
+                <dd :class="`order-1 text-5xl font-extrabold text-${color}`">
+                  {{ format(parseFloat(stats.Storage)) }}MB
                 </dd>
               </div>
             </dl>

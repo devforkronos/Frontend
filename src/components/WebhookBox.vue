@@ -61,7 +61,7 @@ export default {
           <div class="space-y-3">
             <div v-for="item in webhooks" class="w-full" :key="item">
               <a
-                :href="`/manage-api?id=${item.id}`"
+                :href="`/manage-webhook?id=${item.id}`"
                 target="_blank"
                 class="rounded-md relative border w-full border-bray-300 p-4 flex cursor-pointer focus:outline-none"
               >

@@ -23,6 +23,7 @@ export default {
           body: JSON.stringify({
             token: localStorage.token,
             data: {
+              log_uses: localStorage.new_webhook_log_use,
               url: localStorage.new_webhook_url,
               name: localStorage.new_webhook_name,
               description: localStorage.new_webhook_description,
