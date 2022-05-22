@@ -13,7 +13,15 @@ killall nginx
 nginx
 ```
 
-Once done, Open `./src/main.js` and Change `window.$productionURL` to your BloxSafe backend url. open nginx config file on your machine(`/etc/nginx/sites-enabled/default`) and add this configuration to it.
+Once done, Open `./src/settings.js` and Change `window.$productionURL` to your BloxSafe backend url. open nginx config file on your machine(`/etc/nginx/sites-enabled/default`) and add this configuration to it.
+
+```js
+// /src/settings.js
+export default {
+  $productionURL: "YOUR_BACKEND_SERVER_URL_GOES_HERE",
+  $developmentURL: "http://localhost:5000",
+};
+```
 
 ```nginx
 server {

@@ -1,11 +1,11 @@
 module.exports = {
   darkMode: "class",
   content: [
-    "./*.*",
-    "./src/*.*",
-    "./src/*/*.*",
-    "./src/*/*/*.*",
-    "./src/*/*/*/*.*",
+    "./*.{vue,html,js}",
+    "./src/*.{vue,html,js}",
+    "./src/*/*.{vue,html,js}",
+    "./src/*/*/*.{vue,html,js}",
+    "./src/*/*/*/*.{vue,html,js}",
   ],
   theme: {
     extend: {

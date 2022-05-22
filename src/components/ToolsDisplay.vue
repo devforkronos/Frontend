@@ -93,7 +93,7 @@ export default {
       </span>
     </div>
     <div
-      class="border-bray-300 border rounded-lg relative group bg-bray-500 p-6"
+      class="border-bray-300 col-span-2 border rounded-lg relative group bg-bray-500 p-6"
     >
       <div>
         <span
