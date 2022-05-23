@@ -173,7 +173,7 @@ export default {
       <div class="px-4 py-4">
         <div class="grid-cols-2 grid">
           <h1 class="text-gray-200 font-bold text-3xl">
-            <span>{{ script["name"] || "" }}</span>
+            <span>{{ script.name }}</span>
           </h1>
           <div>
             <button

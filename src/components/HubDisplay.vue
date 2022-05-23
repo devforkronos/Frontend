@@ -18,7 +18,19 @@ export default {
       color: localStorage.color,
     };
   },
-  async created() {},
+  async created() {
+    const response = await fetch(`${window.$BackendURL}/api/v1/script/hub`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token: localStorage.token,
+      }),
+    });
+    const { Data: hub } = await response.json();
+    this.hub = hub;
+  },
 };
 </script>
 <template>
@@ -42,7 +54,7 @@ export default {
       </div>
     </div>
     <textarea
-      v-model="hub.script"
+      v-model="hub.Content"
       placeholder="Auto-Generated Lua Code Appears Here"
       disabled
       :class="`scrollbar-thin scrollbar-thumb-${color} scrollbar-track-bray-400 overflow-y-scroll rounded text-gray-400 h-screen text-sm bg-bray-500 border border-bray-300 resize-none w-full mt-3  focus:outline-none px-3 py-3`"

@@ -5,6 +5,7 @@ export default {
     return {
       color: localStorage.color,
       scripts: [],
+      Data: {},
     };
   },
   async created() {
@@ -13,11 +14,9 @@ export default {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ token: localStorage.token }),
     });
-    var { Data: scripts } = await response.json();
-    this.scripts = scripts;
-    if (!scripts) {
-      this.scripts = [];
-    }
+    var Data = await response.json();
+    this.Data = Data;
+    this.scripts = Data.Data;
   },
 };
 </script>
@@ -25,7 +24,9 @@ export default {
   <div class="px-4 mt-4">
     <div class="w-full mt-3 text-gray-300 grid-cols-2 grid">
       <div>
-        <h2 class="text-2xl font-bold">My Scripts</h2>
+        <h2 class="text-2xl font-bold">
+          My Scripts {{ scripts.length }}/{{ Data.max }}
+        </h2>
         <p :class="`text-sm text-gray-400`">Manage/edit your Roblox scripts.</p>
       </div>
       <div>
@@ -39,7 +40,7 @@ export default {
     </div>
     <ul
       role="list"
-      class="grid mt-5 grid-cols-1 mt-1 gap-6 lg:grid-cols-2 xl:grid-cols-3"
+      class="grid mt-4 grid-cols-1 mt-1 gap-6 lg:grid-cols-2 xl:grid-cols-3"
     >
       <div
         class="xl:col-span-3 mt-1 lg:col-span-2 w-full"
