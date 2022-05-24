@@ -14,6 +14,12 @@ export default {
   },
   data() {
     return {
+      copy(text) {
+        navigator.clipboard.writeText(text);
+        setTimeout(function () {
+          alert(`Copied Script Hub Code`);
+        }, 50);
+      },
       hub: {},
       color: localStorage.color,
     };
@@ -46,6 +52,7 @@ export default {
         </div>
         <div>
           <button
+            @click="copy(hub.Content)"
             :class="`bg-${color} float-right text-white rounded-md px-9 py-3`"
           >
             Copy Code
