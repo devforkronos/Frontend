@@ -32,7 +32,7 @@ export default {
                 My Webhooks({{ webhooks.length }}/{{ Maxwebhooks }})
               </h2>
               <p :class="`text-sm text-gray-400`">
-                Manage your BloxSasfe data programatically.
+                Manage your BloxSasfe data programmatically.
               </p>
             </div>
             <div>
