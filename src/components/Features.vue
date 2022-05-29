@@ -88,10 +88,10 @@ export default {
                 <h3
                   :class="`mt-8 text-lg font-medium text-gray-300 tracking-tight`"
                 >
-                  Obfucation Support
+                  Obfuscation Support
                 </h3>
                 <p class="mt-5 text-base text-gray-500">
-                  Our servers can auto-obfucate scritps, this can prevent people
+                  Our servers can auto-obfuscate scritps, this can prevent people
                   from stealing your scripts.
                 </p>
               </div>
