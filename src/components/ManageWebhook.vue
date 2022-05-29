@@ -33,7 +33,7 @@ export default {
           .then((res) => res.json())
           .then((res) => {
             if (res.Success == true) {
-              console.log(`Successfuly updated webhook`);
+              console.log(`Successfully updated webhook`);
               window.location.reload();
             }
           });

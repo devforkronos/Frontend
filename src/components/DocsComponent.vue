@@ -45,13 +45,13 @@ Welcome to the [documentation](/docs), here you will learn to use the panel.
 
 ### **Dashboard**
 <small>On the dashboard page you can view your stats and scripts. To edit a script click on the "manage" button, this will
-take you to the script edit page, from their you can change the code, change name, get link and configure script
+take you to the script edit page, from there you can change the code, change name, get link and configure script
 settings.</small>
 
 
 
 ### **APIs**
-<small>You can use the APIs to manage your data programatically. You can generate API keys from the APIs page.</small>
+<small>You can use the APIs to manage your data programmatically. You can generate API keys from the APIs page.</small>
 
 
 

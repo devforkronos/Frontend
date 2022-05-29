@@ -34,7 +34,7 @@ export default {
           .then((res) => res.json())
           .then((res) => {
             if (res.Success == true) {
-              console.log(`Successfuly updated script`);
+              console.log(`Successfully updated script`);
               window.location.reload();
             }
           });

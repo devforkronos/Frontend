@@ -36,7 +36,7 @@ export default {
                 My APIs({{ apis.length }}/{{ MaxAPIs }})
               </h2>
               <p :class="`text-sm text-gray-400`">
-                Manage your BloxSasfe data programatically.
+                Manage your BloxSafe data programmatically.
               </p>
             </div>
             <div>
