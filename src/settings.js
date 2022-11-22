@@ -1,4 +1,4 @@
 export default {
-  $productionURL: "https://bloxsafe.jubot.site",
+  $productionURL: "https://panel.jubot.site/",
   $developmentURL: "http://localhost:5000",
 };
