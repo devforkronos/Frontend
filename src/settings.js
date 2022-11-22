@@ -1,4 +1,4 @@
 export default {
-  $productionURL: "https://panel.jubot.site/",
+  $productionURL: "backendpluto.rf.gd",
   $developmentURL: "http://localhost:5000",
 };
